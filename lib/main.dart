@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:phones_test_case/exhibit/exhibit_view.dart';
+import 'package:get_it/get_it.dart';
+import 'package:phones_test_case/app_model.dart';
+import 'package:phones_test_case/exhibit/view/exhibit_view.dart';
 
 void main() {
+  GetIt.instance.registerSingleton<AppModel>(AppModelImplementation(),
+      signalsReady: true);
+
   runApp(const MainApp());
 }
 

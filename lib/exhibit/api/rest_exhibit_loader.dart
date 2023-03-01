@@ -1,24 +1,24 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:phones_test_case/exhibit/exhibit.dart';
-import 'package:phones_test_case/exhibit/exhibit_loader.dart';
+import 'package:phones_test_case/exhibit/api/api_exception.dart';
+import 'package:phones_test_case/exhibit/models/exhibit.dart';
+import 'package:phones_test_case/exhibit/api/exhibit_loader.dart';
 
-class RestExhibitsLoader extends ExhibitsLoader {
+class RestExhibitsLoader implements ExhibitsLoader {
   @override
   Future<List<Exhibit>> getExhibitList() async {
     List<dynamic> jsonResponse = await _sendRequest();
-    List<Exhibit> exhibitList = [];
-    for (var element in jsonResponse) {
-      exhibitList.add(Exhibit.fromJson(element));
-    }
 
-    return exhibitList;
+    return jsonResponse.map((element) => Exhibit.fromJson(element)).toList();
   }
 }
 
 Future<List<dynamic>> _sendRequest() async {
+  //What can be null?
+  //final http.Client? httpClient = http.Client(); //Type could be non-nullable
   final http.Client httpClient = http.Client();
   String url = 'https://my-json-server.typicode.com/Reyst/exhibit_db/list';
+  //http.Response? response = await httpClient?.get(Uri.parse(url)); // The recever can't be null
   http.Response response = await httpClient.get(Uri.parse(url));
 
   if (response.statusCode == 200) {
@@ -27,11 +27,4 @@ Future<List<dynamic>> _sendRequest() async {
   } else {
     throw APIException("The API threw an exception: ${response.reasonPhrase}");
   }
-}
-
-class APIException implements Exception {
-  final String _cause;
-  APIException(this._cause);
-  @override
-  String toString() => '$runtimeType - $_cause';
 }
