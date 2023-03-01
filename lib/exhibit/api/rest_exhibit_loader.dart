@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:phones_test_case/exhibit/api/api_exception.dart';
-import 'package:phones_test_case/exhibit/models/exhibit.dart';
+import 'package:phones_test_case/exhibit/models/models.dart';
 import 'package:phones_test_case/exhibit/api/exhibit_loader.dart';
 
 class RestExhibitsLoader implements ExhibitsLoader {
@@ -14,11 +14,8 @@ class RestExhibitsLoader implements ExhibitsLoader {
 }
 
 Future<List<dynamic>> _sendRequest() async {
-  //What can be null?
-  //final http.Client? httpClient = http.Client(); //Type could be non-nullable
   final http.Client httpClient = http.Client();
   String url = 'https://my-json-server.typicode.com/Reyst/exhibit_db/list';
-  //http.Response? response = await httpClient?.get(Uri.parse(url)); // The recever can't be null
   http.Response response = await httpClient.get(Uri.parse(url));
 
   if (response.statusCode == 200) {

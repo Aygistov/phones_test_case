@@ -1,6 +1,8 @@
 class APIException implements Exception {
-  final String _cause;
   APIException(this._cause);
+
+  final String _cause;
+
   @override
   String toString() => '$runtimeType - $_cause';
 }

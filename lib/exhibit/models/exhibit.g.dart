@@ -1,4 +1,3 @@
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'exhibit.dart';
@@ -8,9 +7,11 @@ part of 'exhibit.dart';
 // **************************************************************************
 
 Exhibit _$ExhibitFromJson(Map<String, dynamic> json) => Exhibit(
-      title: json['title'] as String,
-      images:
-          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      title: json['title'] as String? ?? '',
+      images: (json['images'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$ExhibitToJson(Exhibit instance) => <String, dynamic>{

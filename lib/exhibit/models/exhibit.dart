@@ -4,7 +4,9 @@ part 'exhibit.g.dart';
 
 @JsonSerializable()
 class Exhibit {
+  @JsonKey(defaultValue: "")
   final String title;
+  @JsonKey(defaultValue: [])
   final List<String> images;
 
   Exhibit({required this.title, required this.images});

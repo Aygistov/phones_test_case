@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:phones_test_case/exhibit/cubit/exhibit_cubit.dart';
 import 'package:phones_test_case/exhibit/widgets/error_image_widget.dart';
-import 'package:phones_test_case/exhibit/models/exhibit.dart';
+import 'package:phones_test_case/exhibit/models/models.dart';
 
 GetIt getIt = GetIt.instance;
 
